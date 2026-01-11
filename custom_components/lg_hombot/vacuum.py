@@ -133,31 +133,26 @@ class HombotVacuum(StateVacuumEntity):
     async def async_start(self, **kwargs: Any) -> None:
         """Turn the vacuum on."""
         self._activity = VacuumActivity.CLEANING
-        self.async_write_ha_state()
         await self.query('{"COMMAND":"CLEAN_START"}')
 
     async def async_pause(self, **kwargs: Any) -> None:
         """Turn the vacuum on."""
         self._activity = VacuumActivity.PAUSED
-        self.async_write_ha_state()
         await self.query('{"COMMAND":"PAUSE"}')
 
     async def async_return_to_base(self, **kwargs: Any) -> None:
         """Turn the vacuum off."""
         self._activity = VacuumActivity.RETURNING
-        self.async_write_ha_state()
         await self.query('{"COMMAND":"HOMING"}')
 
     async def async_stop(self, **kwargs: Any) -> None:
         """Turn the vacuum off."""
         self._activity = VacuumActivity.RETURNING
-        self.async_write_ha_state()
         await self.query('{"COMMAND":"HOMING"}')
 
     async def async_set_fan_speed(self, fan_speed: str, **kwargs: Any) -> None:
         """Sets fan speed."""
         self._fan_speed = fan_speed
-        self.async_write_ha_state()
 
         if fan_speed == SPEED_TURBO:
             await self.query('{"COMMAND":{"TURBO":"true"}}')
