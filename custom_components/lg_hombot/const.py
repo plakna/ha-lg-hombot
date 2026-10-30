@@ -7,7 +7,6 @@ DOMAIN = "lg_hombot"
 
 SUPPORTED_SERVICES = (
     VacuumEntityFeature.STATE
-    | VacuumEntityFeature.BATTERY
     | VacuumEntityFeature.FAN_SPEED
     | VacuumEntityFeature.START
     | VacuumEntityFeature.PAUSE
